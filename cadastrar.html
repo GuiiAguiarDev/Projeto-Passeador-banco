@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+ 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Matemasie&family=Unlock&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+      <div class="container-nav">
+        <div class="logo">
+          <img src="logo-dog.png" width="150px" height="150px" />
+        </div>
+        <div class="menu">
+          <ul>
+            <li><a href="./html.html">Inicio</a></li>
+            <li>Encontre um passeador</li>
+            <li><a href="./sobre.html">Sobre</a></li>
+            <li>Quero ser uma passeador</li>
+          </ul>
+        </div>
+        <div class="button-menu">
+          <button>Cadastre-se</button>
+          <button>Login</button>
+        </div>
+      </div>
+    </header>
+
+    <section>
+      <div class="container-cadastrar">
+        
+        <p class="text-cadastrar">Sem tempo durante a semana? deixa que nós
+          passeamos com seu Pet</p>
+        <form>
+          <div class="formulario-cadastrar-2">
+            <div class="formBox">
+              <label for="nome">Nome:</label>
+              <input type="text" id="nome" name="nome" />
+
+              <label for="raca">Raça:</label>
+              <input type="text" id="raca" name="raca"  />
+            </div>
+
+            <div class="formBox">
+              <label for="cor">Cor:</label>
+              <input type="text" id="cor" name="cor"  />
+
+              <label for="idade">Idade:</label>
+              <input type="number" id="idade" name="idade"  />
+             
+            </div>
+     
+          </div>
+        
+        </form>
+        <button type="submit" id="salvar">Cadastrar</button>
+      </div>
+
+      <!--Mod 1 de se fazer só descomentar e comentar o outro
+        <div class="container-cadastrar">
+
+          <form>
+                <div class="formulario-cadastrar">
+                  
+                  <div class="formBox">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" />
+    
+                    <label for="raca">Raça:</label>
+                    <input type="text" id="raca" />
+                  </div>
+    
+                  <div class="formBox">
+                    <label for="cor">Cor:</label>
+                    <input type="text" id="cor" />
+    
+                    <label for="idade">Idade:</label>
+                    <input type="number" id="idade" />
+                    </div>
+                    </div>
+                </form>
+
+        </div>
+           
+      -->
+    </section>
+
+    <footer>
+      <div class="container-footer">
+        <div class="text-site">
+          <p>Passeador.com</p>
+        </div>
+        <div class="logos-redes">
+          <img src="facebook.png" height="32px" width="32px" />
+          <img src="linkedin.png" height="32px" width="32px" />
+          <img src="youtube.png" height="32px" width="32px" />
+          <img src="instagram.png" height="32px" width="32px" />
+        </div>
+      </div>
+    </footer>
+
+    <script src="dataBase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  
+  
+    <script>
+
+      var firebaseConfig = {
+        apiKey: "AIzaSyA_XT84Ebukm9-Y5cjtuEJEztdg5qW_-Cg",
+        authDomain: "agoravai-218c6.firebaseapp.com",
+        projectId: "agoravai-218c6",
+        storageBucket: "agoravai-218c6.appspot.com",
+        messagingSenderId: "975390263643",
+        appId: "1:975390263643:web:48584a10445fd54007727e",
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      const auth = firebase.auth();
+      const provider = new firebase.auth.GoogleAuthProvider();
+
+      const db = firebase.firestore();
+
+      /*setTimeout(function () {
+        auth.signInWithPopup(provider);
+      }, 300);*/
+
+
+
+      auth.onAuthStateChanged((val) => {
+        if (val) {
+          alert("logado com sucesso");
+          console.log(val);
+        }
+      });
+    </script>
+  
+  </body>
+</html>

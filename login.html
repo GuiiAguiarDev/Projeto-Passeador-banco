@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <link rel="stylesheet" type="text/css" href="login.css" media="screen" />
+
+</head>
+<body>
+
+
+
+    <!--Formulario de login-->
+    <form>
+        <label for="usuario">Usúario: </label>
+        <input type="text" id="usuario" onchange="validFields()">
+        <label for="senha">Senha: </label>
+        <input type="password" id="senha" onchange="validFields()">
+        <button type="button" id="login-button" onclick="login()">Entrar</button>
+        <button type="button" id="recover-password-button">Recuperar senha</button>
+
+    </form>
+  
+
+
+    <script src="login.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-init.js"></script>
+    <script>
+
+        var firebaseConfig = {
+          apiKey: "AIzaSyA_XT84Ebukm9-Y5cjtuEJEztdg5qW_-Cg",
+          authDomain: "agoravai-218c6.firebaseapp.com",
+          projectId: "agoravai-218c6",
+          storageBucket: "agoravai-218c6.appspot.com",
+          messagingSenderId: "975390263643",
+          appId: "1:975390263643:web:48584a10445fd54007727e",
+        };
+  
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+  
+        
+        const provider = new firebase.auth.GoogleAuthProvider();
+  
+        const db = firebase.firestore();
+  
+        /*setTimeout(function () {
+          auth.signInWithPopup(provider);
+        }, 300);*/
+  
+  
+  
+        
+      </script>
+</body>
+</html>
