@@ -334,10 +334,8 @@ grid*/
   gap: 10px;
   grid-template-columns: 1fr 1fr;
   height: 500px;
-  border: solid red 2px;
 }
 .imagem-login {
-  border: solid red 2px;
 }
 
 /*já Aqui estou falando que onde vai o meu form, é grid e coloquei tres linhas
@@ -346,7 +344,6 @@ grid*/
   display: grid;
 
   grid-template-rows: 100px 1fr 1fr;
-  border: solid blue 2px;
 }
 
 
