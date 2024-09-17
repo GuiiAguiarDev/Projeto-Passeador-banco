@@ -7,6 +7,7 @@ function validFields() {
     !usuarioValid || !passSenha;
 
   console.log("oi");
+
 }
 
 function isUsuarioValid() {
@@ -27,7 +28,8 @@ function isPasswordValid() {
 
 function login(){
     const auth = firebase.auth().signInWithEmailAndPassword(document.getElementById('usuario').value ,document.getElementById('senha').value).then(response =>{
-        console.log("sucesso", response)
+        console.log("sucesso", response);
+        window.location.href = "cadastrar.html";
     }).catch(error =>{
         console.log("Error",error)
     });

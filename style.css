@@ -299,6 +299,16 @@ li a {
   background: #c4e4f4;
 }
 
+
+.formulario-cadastrar-2 > button {
+  padding: 5px;
+  border-radius: 5px;
+  margin-top: 15px;
+  width: 150px;
+  background:#c4e4f4 ;
+}
+
+
 #cor {
   width: 75px;
   text-align: center;
