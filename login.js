@@ -29,7 +29,7 @@ function isPasswordValid() {
 function login(){
     const auth = firebase.auth().signInWithEmailAndPassword(document.getElementById('usuario').value ,document.getElementById('senha').value).then(response =>{
         console.log("sucesso", response);
-        window.location.href = "cadastrar.html";
+        showLoading();
     }).catch(error =>{
         console.log("Error",error)
     });

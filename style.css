@@ -299,15 +299,13 @@ li a {
   background: #c4e4f4;
 }
 
-
 .formulario-cadastrar-2 > button {
   padding: 5px;
   border-radius: 5px;
   margin-top: 15px;
   width: 150px;
-  background:#c4e4f4 ;
+  background: #c4e4f4;
 }
-
 
 #cor {
   width: 75px;
@@ -334,6 +332,9 @@ li a {
   font-style: oblique;
 }
 
+/*-----------------------------------------------------------------------------------------------------------------*/
+/*Inicio do css da tela de Login e cadastro Login*/
+
 /*tela Login*/
 
 /*Aqui estou falando que o container que vai segurar tudo tanto minhas imagens como textos, são
@@ -345,8 +346,6 @@ grid*/
   grid-template-columns: 1fr 1fr;
   height: 500px;
 }
-.imagem-login {
-}
 
 /*já Aqui estou falando que onde vai o meu form, é grid e coloquei tres linhas
 */
@@ -356,9 +355,7 @@ grid*/
   grid-template-rows: 100px 1fr 1fr;
 }
 
-
-
-.linha-1 p:nth-child(1){
+.linha-1 p:nth-child(1) {
   color: rgb(80, 81, 82);
   font-size: 1.25em;
   text-align: end;
@@ -367,21 +364,18 @@ grid*/
   opacity: 0.8;
 }
 
-
-.linha-1 p:nth-child(2){
+.linha-1 p:nth-child(2) {
   color: rgb(0, 0, 0);
   font-size: 2.75em;
   text-align: start;
   font-family: "Dela Gothic One", sans-serif;
-    font-weight: 800;
-    font-style: oblique;
+  font-weight: 800;
+  font-style: oblique;
   font-weight: bolder;
   width: 450px;
   margin-left: 25px;
   font-weight: bolder;
 }
-
-
 
 /*Aqui na segunda linha do meu grid do formulario-Login e falei que é grid tambem
 apenas para conseguir movimentar com justify e etc*/
@@ -392,7 +386,6 @@ apenas para conseguir movimentar com justify e etc*/
   justify-content: center;
   /*align-items: eu movimento de cima para baixo
   align-items: end;*/
- 
 }
 
 /*Sempre quando quiser colocar algo a mais dentro de um grid ja feito, utilizar o um outro grid, 
@@ -419,30 +412,26 @@ ficar bem alinhado e certo e justo*/
 }
 
 .subGrid input {
-
   padding: 10px;
   border-radius: 8px;
 }
 
-
-
-
-.linha-3{
+.linha-3 {
   display: grid;
   justify-content: center;
   align-items: center;
-
-
 }
 
-.subGridLinha3{
+.linha-3 button {
+  width: 150px;
+}
+.subGridLinha3 {
   display: grid;
   grid-template-columns: 100px 100px;
-
 }
 
-.subGridLinha3 button{
- 
+.subGridLinha3 button {
+  width: 100px;
   height: 50px;
   position: relative;
   right: 40px;
@@ -450,15 +439,44 @@ ficar bem alinhado e certo e justo*/
   border-radius: 5px;
   color: rgb(0, 0, 0);
   font-weight: bold;
-  font-size: 1.0em;
+  font-size: 1em;
+  border: solid rgb(14, 15, 15) 2px;
 }
 
-.subGridLinha3 button:nth-child(1){
-background: #64c7e6;
+.subGridLinha3 button:nth-child(1) {
+  background: #64c7e6;
 }
 
-.subGridLinha3 button:nth-child(2){
-width: 150px;
-background-color: #c4e4f4;
-
+.subGridLinha3 button:nth-child(2) {
+  background-color: #c4e4f4;
+  margin-left: 20px;
 }
+
+/*-----------------------------------------------------------------------------------------------------------------*/
+/*Fim do css da tela de Login e cadastro Login*/
+
+/*-----------------------------------------------------------------------------------------------------------------*/
+/*Inicio do css Loading*/
+
+.centralize {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loading {
+  background: rgb(0, 0, 0, 0.5);
+  position: fixed;
+  /*Coloquei essa parte aqui, porque no meu js do loading como estou inserindo a div por lá
+  ele estava criando o meu loading muito para baixo, então nessa linha de codigo que estou deixando marcado aqui ele
+  está arrumando e deixando certinho, iniciando lá do meu topo, sem isso ele inicia de baixo e quando coloco
+  o heigth ele joga tudo para baixo */
+  position: absolute;
+  top: 10px;
+  width: 1400px;
+  height: 100%;
+  /*Fim do codigo para arrumar meu loading*/
+  font-size: 1.75em;
+}
+
+/*-----------------------------------------------------------------------------------------------------------------*/
+/*Fim do css Loading*/
