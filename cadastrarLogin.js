@@ -1,3 +1,4 @@
+//Cadastrar Usuario
 function cadastrar(){
     const usuario = document.getElementById('criacaoUsuario').value;
     const senha = document.getElementById('criacaoSenha').value;
@@ -16,6 +17,13 @@ function cadastrar(){
 
 }
 
+
+
+
+
 function getErrorMessage(error){
     return error.message;
 }
+
+
+

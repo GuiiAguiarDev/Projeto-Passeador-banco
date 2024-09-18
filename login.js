@@ -7,7 +7,6 @@ function validFields() {
     !usuarioValid || !passSenha;
 
   console.log("oi");
-
 }
 
 function isUsuarioValid() {
@@ -26,13 +25,32 @@ function isPasswordValid() {
   return true;
 }
 
-function login(){
-    const auth = firebase.auth().signInWithEmailAndPassword(document.getElementById('usuario').value ,document.getElementById('senha').value).then(response =>{
-        console.log("sucesso", response);
-        showLoading();
-    }).catch(error =>{
-        console.log("Error",error)
+function login() {
+  const auth = firebase
+    .auth()
+    .signInWithEmailAndPassword(
+      document.getElementById("usuario").value,
+      document.getElementById("senha").value
+    )
+    .then((response) => {
+      console.log("sucesso", response);
+      showLoading();
+    })
+    .catch((error) => {
+      console.log("Error", error);
     });
 }
 
+//Recuperar senha
+function recoverPassword() {
+  firebase
+    .auth()
+    .sendPasswordResetEmail(document.getElementById("usuario").value)
+    .then(() => {
+      alert("Email enviado com sucesso");
+    })
+    .catch((error) => {
+      alert('Campo Usuario vazio para recuperação')
+    });
+}
 
