@@ -6,13 +6,19 @@
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
- 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Matemasie&family=Unlock&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Matemasie&family=Unlock&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header>
+      <!--Botão Sair-->
+      <button type="button" onclick="logout()">Sair</button>
+      <!--Botão Sair-->
       <div class="container-nav">
         <div class="logo">
           <img src="logo-dog.png" width="150px" height="150px" />
@@ -34,9 +40,9 @@
 
     <section>
       <div class="container-cadastrar">
-        
-        <p class="text-cadastrar">Sem tempo durante a semana? deixa que nós
-          passeamos com seu Pet</p>
+        <p class="text-cadastrar">
+          Sem tempo durante a semana? deixa que nós passeamos com seu Pet
+        </p>
         <form>
           <div class="formulario-cadastrar-2">
             <div class="formBox">
@@ -44,21 +50,18 @@
               <input type="text" id="nome" name="nome" />
 
               <label for="raca">Raça:</label>
-              <input type="text" id="raca" name="raca"  />
+              <input type="text" id="raca" name="raca" />
             </div>
 
             <div class="formBox">
               <label for="cor">Cor:</label>
-              <input type="text" id="cor" name="cor"  />
+              <input type="text" id="cor" name="cor" />
 
               <label for="idade">Idade:</label>
-              <input type="number" id="idade" name="idade"  />
-             
+              <input type="number" id="idade" name="idade" />
             </div>
             <button type="button" id="salvar">Cadastrar</button>
-
           </div>
-
         </form>
       </div>
 
@@ -106,15 +109,19 @@
     </footer>
 
     <script src="dataBase.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-  
-  
-    <script>
+    <script src="login.js"></script>
+    <!--Script para chamar o banco-->
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+    <!--Script para mexer nos logins, autenticacoes-->
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+    <!--Script para conseguir salvar no banco, tem que sempre ver as versões se nao dá problema
+    por exemplo do firebase firestore eu estava colocando na mesma do de cima e estava dando erro
+    cada um tem o seu pesquisar no proprio site do firebase-->
 
-      var firebaseConfig = {
+    <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore-compat.js"></script>
+
+    <script>
+      const firebaseConfig = {
         apiKey: "AIzaSyA_XT84Ebukm9-Y5cjtuEJEztdg5qW_-Cg",
         authDomain: "agoravai-218c6.firebaseapp.com",
         projectId: "agoravai-218c6",
@@ -126,24 +133,16 @@
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig);
 
-      const auth = firebase.auth();
-      const provider = new firebase.auth.GoogleAuthProvider();
-
       const db = firebase.firestore();
 
-      /*setTimeout(function () {
-        auth.signInWithPopup(provider);
-      }, 300);*/
-
-
-
-      auth.onAuthStateChanged((val) => {
-        if (val) {
-          alert("logado com sucesso");
-          console.log(val);
+      /*Só usuario logados que podem ter acesso a determinadas paginas, como nao estou logado
+      não tenho acesso e sou direcionado para a pagina de login */
+      firebase.auth().onAuthStateChanged(user => {
+        if (!user) {
+          window.location.href = "login.html";
         }
       });
+      /*Só usuario logados que podem ter acesso a determinadas paginas */
     </script>
-  
   </body>
 </html>

@@ -15,7 +15,6 @@
     />
   </head>
   <body>
-   
     <header>
       <div class="container-nav">
         <div class="logo">
@@ -35,7 +34,7 @@
         </div>
       </div>
     </header>
-    
+
     <section>
       <div class="container-login">
         <div class="imagem-login">
@@ -49,39 +48,69 @@
 
           <div class="linha-2">
             <div class="subGrid">
-              <label for="usuario">Usúario: </label>
-              <input type="text" id="usuario" onchange="validFields()" />
-
-              <label for="senha">Senha: </label>
-              <input type="password" id="senha" onchange="validFields()" />
+              <label for="email">E-mail: </label>
+              <input
+                type="email"
+                name="email"
+                placeholder="seu@email.com"
+                id="email"
+                onchange="onChangeEmail()"
+              />
+              <div class="error" id="email-required-error">
+                Email é obrigatório
+              </div>
+              <div class="error" id="email-invalid-error">Email é inválido</div>
+              <label for="password">Senha: </label>
+              <input
+                type="password"
+                name="password"
+                placeholder="Senha"
+                id="password"
+                onchange="onChangePassword()"
+              />
+              <div class="error" id="password-required-error">
+                senha é obrigatória
+              </div>
             </div>
           </div>
 
           <div class="linha-3">
             <div class="subGridLinha3">
-              <button type="button" id="login-button" onclick="login()">
+              <button
+                type="button"
+                class="solid"
+                id="login-button"
+                onclick="login()"
+                disabled="true"
+              >
                 Entrar
               </button>
-              <button type="button" id="recover-password-button" onclick="recoverPassword()">
+              <button
+                type="button"
+                id="recover-password-button"
+                onclick="recoverPassword()"
+                disabled="true"
+              >
                 Recuperar senha
               </button>
             </div>
           </div>
         </div>
-       
       </div>
     </section>
- 
+
     <script src="login.js"></script>
     <script src="loading.js"></script>
 
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-init.js"></script>
-    <script>
-      var firebaseConfig = {
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+    <!--Script para mexer nos logins, autenticacoes-->
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+    <!--Script para conseguir salvar no banco-->
+    <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore-compat.js"></script>
+
+    <script type="module">
+      const firebaseConfig = {
         apiKey: "AIzaSyA_XT84Ebukm9-Y5cjtuEJEztdg5qW_-Cg",
         authDomain: "agoravai-218c6.firebaseapp.com",
         projectId: "agoravai-218c6",
@@ -93,13 +122,15 @@
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig);
 
-      const provider = new firebase.auth.GoogleAuthProvider();
+      /*Nao conseguir ir para tela de login se já estiver logado */
+      firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+          window.location.href = "cadastrar.html";
+          
+        }
+      });
 
-      const db = firebase.firestore();
-
-      /*setTimeout(function () {
-          auth.signInWithPopup(provider);
-        }, 300);*/
+      /*Nao conseguir ir para tela de login se já estiver logado */
     </script>
   </body>
 </html>

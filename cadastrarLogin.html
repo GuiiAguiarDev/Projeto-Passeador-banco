@@ -23,7 +23,7 @@
           </ul>
         </div>
         <div class="button-menu">
-          <button>Cadastre-se</button>
+          <button class="btnCadastrase">Cadastre-se</button>
           <button>Login</button>
         </div>
       </div>
@@ -70,12 +70,14 @@
     </form>
 
     <script src="cadastrarLogin.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+    <!--Script para mexer nos logins, autenticacoes-->
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+    <!--Script para conseguir salvar no banco-->
+    <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore-compat.js"></script>
+
     <script>
-      var firebaseConfig = {
+      const firebaseConfig = {
         apiKey: "AIzaSyA_XT84Ebukm9-Y5cjtuEJEztdg5qW_-Cg",
         authDomain: "agoravai-218c6.firebaseapp.com",
         projectId: "agoravai-218c6",
@@ -87,13 +89,14 @@
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig);
 
-      const provider = new firebase.auth.GoogleAuthProvider();
+      /*Nao conseguir ir para tela de cadastrar login se já estiver logado */
+      firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+          window.location.href = "cadastrar.html";
+        }
+      });
 
-      const db = firebase.firestore();
-
-      /*setTimeout(function () {
-          auth.signInWithPopup(provider);
-        }, 300);*/
+      /*Nao conseguir ir para tela de cadastrar login  se já estiver logado */
     </script>
   </body>
 </html>
