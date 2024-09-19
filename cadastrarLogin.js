@@ -21,9 +21,7 @@ function cadastrar(){
 
 
 
-function getErrorMessage(error){
-    return error.message;
-}
+
 
 
 

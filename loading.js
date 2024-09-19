@@ -7,7 +7,6 @@ function showLoading() {
   div.appendChild(p);
   document.body.appendChild(div);
 
-  setTimeout(() =>hideLoading(), 2000);
 
 }
 
@@ -15,7 +14,6 @@ function hideLoading() {
     const loadings = document.getElementsByClassName('loading');
     if(loadings.length){
         loadings[0].remove();
-        window.location.href = "cadastrar.html";
 
     }
 

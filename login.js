@@ -26,31 +26,46 @@ function isPasswordValid() {
 }
 
 function login() {
-  const auth = firebase
+  showLoading();
+
+  firebase
     .auth()
     .signInWithEmailAndPassword(
       document.getElementById("usuario").value,
       document.getElementById("senha").value
     )
     .then((response) => {
-      console.log("sucesso", response);
-      showLoading();
+      hideLoading();
+      window.location.href = "cadastrar.html";
     })
     .catch((error) => {
-      console.log("Error", error);
+      hideLoading();
+      alert(error.code);
     });
+}
+
+function getErrorMessage(error) {
+  if (error.code == "auth/user-not-found") {
+    return "usuario não encontrado";
+  }
+  if (error.code == "auth/wrong-password") {
+    return "Senha inválida";
+  }
+  return error.message;
 }
 
 //Recuperar senha
 function recoverPassword() {
+  showLoading();
   firebase
     .auth()
     .sendPasswordResetEmail(document.getElementById("usuario").value)
     .then(() => {
+      hideLoading();
       alert("Email enviado com sucesso");
     })
     .catch((error) => {
-      alert('Campo Usuario vazio para recuperação')
+      hideLoading();
+      alert(getErrorMessage(error));
     });
 }
-
