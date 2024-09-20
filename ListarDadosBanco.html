@@ -41,80 +41,19 @@
     </header>
 
     <section>
-      <div class="container-cadastrar">
-        <p class="text-cadastrar">
-          Sem tempo durante a semana? deixa que nós passeamos com seu Pet
-        </p>
-        <form>
-          <div class="formulario-cadastrar-2">
-            <div class="formBox">
-              <label for="nome">Nome:</label>
-              <input type="text" id="nome" name="nome" />
-
-              <label for="raca">Raça:</label>
-              <input type="text" id="raca" name="raca" />
-            </div>
-
-            <div class="formBox">
-              <label for="cor">Cor:</label>
-              <input type="text" id="cor" name="cor" />
-
-              <label for="idade">Idade:</label>
-              <input type="number" id="idade" name="idade" />
-            </div>
-            <button type="button" id="salvar">Cadastrar</button>
-          </div>
-        </form>
-      </div>
-
-      <!--Mod 1 de se fazer só descomentar e comentar o outro
-        <div class="container-cadastrar">
-
-          <form>
-                <div class="formulario-cadastrar">
-                  
-                  <div class="formBox">
-                    <label for="nome">Nome:</label>
-                    <input type="text" id="nome" />
-    
-                    <label for="raca">Raça:</label>
-                    <input type="text" id="raca" />
-                  </div>
-    
-                  <div class="formBox">
-                    <label for="cor">Cor:</label>
-                    <input type="text" id="cor" />
-    
-                    <label for="idade">Idade:</label>
-                    <input type="number" id="idade" />
-                    </div>
-                    </div>
-                </form>
-
-        </div>
-           
-      -->
-
-
-
-      <section>
         <table id="tableClient">
             <thead>
               <tr>
-                <th>Nome</th>
-                <th>Raça</th>
-                <th>Cor</th>
-                <th>Idade</th>
-                <th>usuario</th>
-                
+                <select>Selecione</select>
               </tr>
             </thead>
             <tbody>
-              <tr></tr>
+              
             </tbody>
           </table>
     </section>
-    </section>
+
+    <button class="salvar" id="salvar">Ver</button>
 
     <footer>
       <div class="container-footer">
@@ -155,19 +94,11 @@
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig);
 
-      const db = firebase.firestore();
+     
 
       /*Só usuario logados que podem ter acesso a determinadas paginas, como nao estou logado
       não tenho acesso e sou direcionado para a pagina de login */
-      firebase.auth().onAuthStateChanged((user) => {
-        if (!user) {
-          window.location.href = "login.html";
-        }
-        firebaseUser = user;
-        const usuarioFirebase = user.email;
-        usuarioLogado = document.querySelector(".nomeUsuarioLogado");
-        usuarioLogado.innerHTML = usuarioFirebase;
-      });
+   
       /*Só usuario logados que podem ter acesso a determinadas paginas */
     </script>
   </body>
