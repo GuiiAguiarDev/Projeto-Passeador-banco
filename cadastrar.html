@@ -17,7 +17,9 @@
   <body>
     <header>
       <!--Botão Sair-->
-      <button type="button" onclick="logout()">Sair</button>
+      <p class="nomeUsuarioLogado"></p>
+      <button type="button" onclick="logout()">logoff</button>
+
       <!--Botão Sair-->
       <div class="container-nav">
         <div class="logo">
@@ -137,10 +139,14 @@
 
       /*Só usuario logados que podem ter acesso a determinadas paginas, como nao estou logado
       não tenho acesso e sou direcionado para a pagina de login */
-      firebase.auth().onAuthStateChanged(user => {
+      firebase.auth().onAuthStateChanged((user) => {
         if (!user) {
           window.location.href = "login.html";
         }
+        firebaseUser = user;
+        const usuarioFirebase = user.email;
+        usuarioLogado = document.querySelector(".nomeUsuarioLogado");
+        usuarioLogado.innerHTML = usuarioFirebase;
       });
       /*Só usuario logados que podem ter acesso a determinadas paginas */
     </script>

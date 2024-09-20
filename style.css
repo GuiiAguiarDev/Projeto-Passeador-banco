@@ -525,7 +525,27 @@ ficar bem alinhado e certo e justo*/
 
 header{
   text-align: right;
+  padding: 10px;
 }
 header button{
   width: auto;
+  background: red;
+  border-radius: 5px;
+  padding: 5px;
+  color: white;
 }
+
+/*Botão sair - logoff do login*/
+
+
+
+/*Nome usuario logado*/
+
+
+.nomeUsuarioLogado{
+  font-family: "Dela Gothic One", sans-serif;
+  font-size: 1em;
+  margin-bottom: 10px;
+
+}
+/*Nome usuario logado*/

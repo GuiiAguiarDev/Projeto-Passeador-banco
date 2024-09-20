@@ -1,9 +1,16 @@
 //Mudar página pelo button
-const btnCadastrar = document.querySelector('.button-menu button');
+const bntCadastrarLogin = document.querySelector('.bntCadastrarLogin');
+const btnLogin = document.querySelector('.btnLogin');
 
-function mudarpagina(){
+function direcionarParaCadastrarLogin(){
     console.log('ativou');
-    window.location.href = 'cadastrar.html';
+    window.location.href = 'cadastrarLogin.html';
 }
 
-btnCadastrar.addEventListener('click', mudarpagina);
+function direcionarParaFazerLogin(){
+    console.log('ativou');
+    window.location.href = 'login.html';
+}
+
+bntCadastrarLogin.addEventListener('click', direcionarParaCadastrarLogin);
+btnLogin.addEventListener('click', direcionarParaFazerLogin);
