@@ -50,6 +50,12 @@
                 <input type="password" id="criacaoSenha" />
                 <label for="criacaoSenhaConfirmacao">Confirmar Senha: </label>
                 <input type="password" id="criacaoSenhaConfirmacao" />
+                <div>
+                <input type="radio" id="passeador" name="tipo"  value="passeador">
+                <label for="passeador">Passeador</label>
+                <input type="radio" id="cliente" name="tipo"  value="cliente">
+                <label for="cliente">Cliente</label>
+              </div>
               </div>
             </div>
 
@@ -69,7 +75,7 @@
       </section>
     </form>
 
-    <script src="cadastrarLogin.js"></script>
+    <script src="registrarLogin.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
     <!--Script para mexer nos logins, autenticacoes-->
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
@@ -88,6 +94,8 @@
 
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig);
+
+      const db = firebase.firestore();
 
       /*Nao conseguir ir para tela de cadastrar login se já estiver logado */
       firebase.auth().onAuthStateChanged(function (user) {

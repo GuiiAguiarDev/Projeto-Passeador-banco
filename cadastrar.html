@@ -105,7 +105,7 @@
                 <th>Raça</th>
                 <th>Cor</th>
                 <th>Idade</th>
-                <th>usuario</th>
+                <th>Tutor</th>
                 
               </tr>
             </thead>
@@ -130,8 +130,9 @@
       </div>
     </footer>
 
-    <script src="dataBase.js"></script>
+    <script src="cadastrandoDadosBanco.js"></script>
     <script src="login.js"></script>
+  
     <!--Script para chamar o banco-->
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
     <!--Script para mexer nos logins, autenticacoes-->
@@ -164,7 +165,7 @@
           window.location.href = "login.html";
         }
         firebaseUser = user;
-        const usuarioFirebase = user.email;
+        const usuarioFirebase = user.uid;
         usuarioLogado = document.querySelector(".nomeUsuarioLogado");
         usuarioLogado.innerHTML = usuarioFirebase;
       });
