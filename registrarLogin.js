@@ -33,7 +33,7 @@ function cadastrar() {
         alert(getErrorMessage(error));
       });
 
-    db.collection("cachorro").add({
+    db.collection("users").add({
       client: client,
     });
   } else {
