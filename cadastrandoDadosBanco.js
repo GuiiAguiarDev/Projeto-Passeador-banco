@@ -28,69 +28,31 @@ const saveClient = () => {
       uid: firebase.auth().currentUser.email,
     },
   };
-  const index = document.getElementById("nome").dataset.index;
+  
 
   db.collection("cachorro").add({
     client: client,
   });
   db.collection("cachorro")
-    .get()
-    .then((snapshot) => {
-      const tableClient = snapshot.docs.map((doc) => doc.data().client);
+      .get()
+      .then((snapshot) => {
+        const tableClient = snapshot.docs.map(doc => ({
+          ...doc.data().client,uid: doc.id //Aqui estou pegando o id gerado automatico pelo fire e as infos daqui
+     
+        }) );
 
-      tabelinha(tableClient);
-    });
-  createClient(client);
-  updatetable();
+
+        tabelinha(tableClient);
+
+
+
+
+});
+updatetable();
 };
 
-const createRow = (client, index) => {
-  const newRow = document.createElement("tr");
-  //Comentei porque esse é do local storage
-  /*
-  newRow.innerHTML = `
-  <td>${client.nome}</td>
-  <td>${client.raca}</td>
-  <td>${client.cor}</td>
-  <td>${client.idade}</td>
-  <td>${client.user.uid}</td>
 
-  <td>
- 
-  `;
 
-   */
-  //Arruma depois aqui ou la em cima
-  document.querySelector("#tableClient>tbody").appendChild(newRow);
-};
-
-//------------------------------------------------------
-//------------------------------------------------------
-//Arrumando tabela, limpar dados duplicados tabela
-
-//Para não cadastrar mais de um e quando voltar a informação nao volta mais de duas tambem
-//lembrando que nao tem nada ver com o cadastrar, cadastrar já está correto, ele cadastra apenas
-//uma vez no meu banco, porem na parte de front, para mostrar na tela ele mostra como se
-//tivesse cadastrado dois, então ele cadatsra dois e retorna dois, para tirar isso basta
-//criar o clearTable e o updatetable
-const clearTable = () => {
-  const rows = document.querySelectorAll("#tableClient>tbody td");
-  rows.forEach((row) => row.parentNode.removeChild(row));
-};
-
-const updatetable = () => {
-  const dbClient = readClient();
-  //Depois que atualizar limpar tabela
-  clearTable();
-  dbClient.forEach(createRow);
-};
-
-document.getElementById("salvar").addEventListener("click", saveClient);
-/*Cadastrando informações no banco */
-
-//Arrumando tabela, limpar dados duplicados tabela
-//------------------------------------------------------
-//---
 
 //-------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------
@@ -128,18 +90,71 @@ const tabelinha = (tableClient) => {
   });
 };
 
-addEventListener("load", (event) => {
-  db.collection("cachorro")
-    .get()
-    .then((snapshot) => {
-      const tableClient = snapshot.docs.map((doc) => doc.data().client);
 
-      tabelinha(tableClient);
-    });
-});
 
-updatetable();
 //Trazer as informações de forma automatica do banco assim que entrar na página ou dar f5
 
 //-------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------
+
+
+
+
+
+//------------------------------------------------------
+//------------------------------------------------------
+//Arrumando tabela, limpar dados duplicados tabela
+
+//Para não cadastrar mais de um e quando voltar a informação nao volta mais de duas tambem
+//lembrando que nao tem nada ver com o cadastrar, cadastrar já está correto, ele cadastra apenas
+//uma vez no meu banco, porem na parte de front, para mostrar na tela ele mostra como se
+//tivesse cadastrado dois, então ele cadatsra dois e retorna dois, para tirar isso basta
+//criar o clearTable e o updatetable
+const clearTable = () => {
+  const rows = document.querySelectorAll("#tableClient>tbody td");
+  const del = document.querySelectorAll("#tableClient>tbody tr");
+  rows.forEach((row) => row.parentNode.removeChild(row));
+  del.forEach((row) => row.parentNode.removeChild(row)); //
+};
+
+const updatetable = () => {
+  const dbClient = readClient();
+  //Depois que atualizar limpar tabela
+  clearTable();
+
+};
+
+document.getElementById("salvar").addEventListener("click", saveClient);
+/*Cadastrando informações no banco */
+
+//Arrumando tabela, limpar dados duplicados tabela
+//------------------------------------------------------
+//---
+
+
+
+
+
+
+
+
+
+
+
+addEventListener("load", (event) => {
+  
+  db.collection("cachorro")
+    .get()
+    .then((snapshot) => {
+      const tableClient = snapshot.docs.map(doc => ({
+        ...doc.data().client,uid: doc.id //Aqui estou pegando o id gerado automatico pelo fire e as infos daqui
+   
+      }) );
+      
+      tabelinha(tableClient);
+
+    
+   
+    });
+    
+});
