@@ -1,17 +1,31 @@
+"use strict";
+const readClient = () => getLocalStorage();
+
+const getLocalStorage = () =>
+  JSON.parse(localStorage.getItem("db_client")) ?? [];
+const setLocalStorage = (db_client) =>
+  localStorage.setItem("db_client", JSON.stringify(db_client));
+
+const createClient = (client) => {
+  const dbClient = getLocalStorage();
+  dbClient.push(client);
+  setLocalStorage(dbClient);
+};
+
 //Cadastrar Usuario
 function cadastrar() {
+  const client = {
+    usuario: document.getElementById("criacaoUsuario").value,
+    senha: document.getElementById("criacaoSenha").value,
+    senha1: document.getElementById("criacaoSenhaConfirmacao").value,
 
-  const usuario = document.getElementById("criacaoUsuario").value;
-  const senha = document.getElementById("criacaoSenha").value;
-  const senha1 = document.getElementById("criacaoSenhaConfirmacao").value;
-
-  //Pegando as in
-  const tipo = document.querySelector("input[name='tipo']:checked").value;
-
-  if (senha === senha1 && tipo === "cliente") {
+    //Pegando as in
+    tipo: document.querySelector("input[name='tipo']:checked").value,
+  };
+  if (client.senha === client.senha1 && client.tipo === "cliente") {
     firebase
       .auth()
-      .createUserWithEmailAndPassword(usuario, senha)
+      .createUserWithEmailAndPassword(client.usuario, client.senha)
       .then(() => {
         window.location.href = "login.html";
       })
@@ -19,12 +33,8 @@ function cadastrar() {
         alert(getErrorMessage(error));
       });
 
-    db.collection("Users").add({
-      client:
-      usuario,
-      senha,
-      senha1,
-      tipo,
+    db.collection("cachorro").add({
+      client: client,
     });
   } else {
     console.log("erro");
