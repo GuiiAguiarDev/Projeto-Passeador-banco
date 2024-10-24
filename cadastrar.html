@@ -165,7 +165,7 @@
           window.location.href = "login.html";
         }
         firebaseUser = user;
-        const usuarioFirebase = user.uid;
+        const usuarioFirebase = user.email;
         usuarioLogado = document.querySelector(".nomeUsuarioLogado");
         usuarioLogado.innerHTML = usuarioFirebase;
       });

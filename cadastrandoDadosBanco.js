@@ -1,4 +1,5 @@
 /*Cadastrando informações no banco */
+
 "use strict";
 const readClient = () => getLocalStorage();
 
@@ -27,31 +28,26 @@ const saveClient = () => {
       uid: firebase.auth().currentUser.email,
     },
   };
+  const index = document.getElementById("nome").dataset.index;
 
   db.collection("cachorro").add({
     client: client,
   });
+  db.collection("cachorro")
+    .get()
+    .then((snapshot) => {
+      const tableClient = snapshot.docs.map((doc) => doc.data().client);
 
-  db.collection("cachorro").onSnapshot(function (data) {
-    let list = document.querySelector("#tableClient>tbody");
-
-    data.docs.map(function (val) {
-      list.innerHTML +=
-        `<td>${val.data().client.nome}</td>` +
-        `<td>${val.data().client.raca}</td>` +
-        `<td>${val.data().client.cor}</td>` +
-        `<td>${val.data().client.idade}</td>` +
-        `<td>${val.data().client.user.uid}</td>`;
+      tabelinha(tableClient);
     });
-    createClient(client);
-    updatetable();
-  });
+  createClient(client);
+  updatetable();
 };
-
-
 
 const createRow = (client, index) => {
   const newRow = document.createElement("tr");
+  //Comentei porque esse é do local storage
+  /*
   newRow.innerHTML = `
   <td>${client.nome}</td>
   <td>${client.raca}</td>
@@ -63,6 +59,7 @@ const createRow = (client, index) => {
  
   `;
 
+   */
   //Arruma depois aqui ou la em cima
   document.querySelector("#tableClient>tbody").appendChild(newRow);
 };
@@ -77,7 +74,7 @@ const createRow = (client, index) => {
 //tivesse cadastrado dois, então ele cadatsra dois e retorna dois, para tirar isso basta
 //criar o clearTable e o updatetable
 const clearTable = () => {
-  const rows = document.querySelectorAll("#tableClient>tbody tr");
+  const rows = document.querySelectorAll("#tableClient>tbody td");
   rows.forEach((row) => row.parentNode.removeChild(row));
 };
 
@@ -94,11 +91,6 @@ document.getElementById("salvar").addEventListener("click", saveClient);
 //Arrumando tabela, limpar dados duplicados tabela
 //------------------------------------------------------
 //---
-
-
-
-
-
 
 //-------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------
@@ -146,7 +138,7 @@ addEventListener("load", (event) => {
     });
 });
 
-
+updatetable();
 //Trazer as informações de forma automatica do banco assim que entrar na página ou dar f5
 
 //-------------------------------------------------------------------------------------
