@@ -51,11 +51,21 @@
                 <label for="criacaoSenhaConfirmacao">Confirmar Senha: </label>
                 <input type="password" id="criacaoSenhaConfirmacao" />
                 <div>
-                <input type="radio" id="passeador" name="tipo"  value="passeador">
-                <label for="passeador">Passeador</label>
-                <input type="radio" id="cliente" name="tipo"  value="cliente">
-                <label for="cliente">Cliente</label>
-              </div>
+                  <input
+                    type="radio"
+                    id="passeador"
+                    name="tipo"
+                    value="passeador"
+                  />
+                  <label for="passeador">Passeador</label>
+                  <input
+                    type="radio"
+                    id="cliente"
+                    name="tipo"
+                    value="cliente"
+                  />
+                  <label for="cliente">Cliente</label>
+                </div>
               </div>
             </div>
 
@@ -98,7 +108,24 @@
       const db = firebase.firestore();
 
       /*Nao conseguir ir para tela de cadastrar login se já estiver logado */
-    
+      firebase.auth().onAuthStateChanged(function (user,tipo) {
+        if (user) {
+          console.log(user);
+
+          receber();
+        }
+      });
+
+      //Eu estou usando aqui, mas posso usar no arquivo js se eu quiser, sempre quando quiser
+      //recuperar dados cadastrados no fire base uso esse codigo abaixo, lembrando que estou
+      //chamando ele acima tambem para funcionar
+      const receber = async () => {
+        const query = await db.collection("users").get();
+        query.forEach((doc) => {
+          console.log(`${doc.id} => ${doc.data().client.tipo}`);
+        });
+      };
+
       /*Nao conseguir ir para tela de cadastrar login  se já estiver logado */
     </script>
   </body>
