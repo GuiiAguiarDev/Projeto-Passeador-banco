@@ -108,13 +108,7 @@
       const db = firebase.firestore();
 
       /*Nao conseguir ir para tela de cadastrar login se já estiver logado */
-      firebase.auth().onAuthStateChanged(function (user,tipo) {
-        if (user) {
-          console.log(user);
-
-          receber();
-        }
-      });
+     
 
       //Eu estou usando aqui, mas posso usar no arquivo js se eu quiser, sempre quando quiser
       //recuperar dados cadastrados no fire base uso esse codigo abaixo, lembrando que estou
@@ -122,8 +116,23 @@
       const receber = async () => {
         const query = await db.collection("users").get();
         query.forEach((doc) => {
-          console.log(`${doc.id} => ${doc.data().client.tipo}`);
+          const tipo = `${doc.data().client.tipo}`
+
+          firebase.auth().onAuthStateChanged(function (user,tipo) {
+        receber();
+        if (tipo ==='cliente') {
+          
+          console.log('oi');
+         
+        }
+      });
+
+
         });
+
+
+
+
       };
 
       /*Nao conseguir ir para tela de cadastrar login  se já estiver logado */

@@ -87,6 +87,20 @@ function validateEmail(email) {
   return /\S+@\S+\.\S+/.test(email);
 }
 
+
+
+
+
+    
+  const receber = async () => {
+    const query = await db.collection("users").get();
+    query.forEach((doc) => {
+      console.log(`${doc.id} => ${doc.data().client.tipo}`);
+    });
+  };
+
+
+
 function login() {
   showLoading();
 
@@ -95,10 +109,16 @@ function login() {
     .signInWithEmailAndPassword(
       document.getElementById("email").value,
       document.getElementById("password").value
+
+
+
+      
     )
     .then((response) => {
       hideLoading();
-      window.location.href = "cadastrar.html";
+      receber();
+   
+      //window.location.href = "cadastrar.html";
     
     })
     .catch((error) => {
