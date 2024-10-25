@@ -98,12 +98,7 @@
       const db = firebase.firestore();
 
       /*Nao conseguir ir para tela de cadastrar login se já estiver logado */
-      firebase.auth().onAuthStateChanged(function (user) {
-        if (user) {
-          window.location.href = "cadastrar.html";
-        }
-      });
-
+    
       /*Nao conseguir ir para tela de cadastrar login  se já estiver logado */
     </script>
   </body>

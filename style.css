@@ -549,3 +549,35 @@ header button{
 
 }
 /*Nome usuario logado*/
+
+
+
+/*Tela escolha*/
+
+
+.container-escolha {
+  max-width: 1400px;
+  border: solid red 2px;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  height: 400px;
+}
+
+
+
+
+.escolha{
+  display: flex;
+  max-width: 700px;
+  border: solid green 2px;
+  align-items: center;
+}
+
+.text-escolha{
+
+  font-size: 2.75em;
+  margin: 0 auto;
+}
+
+
