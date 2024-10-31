@@ -1,7 +1,3 @@
-
-
-
-
 /*Validações do email */
 function onChangeEmail() {
   toggleButtonsDisable();
@@ -87,20 +83,6 @@ function validateEmail(email) {
   return /\S+@\S+\.\S+/.test(email);
 }
 
-
-
-
-
-    
-  const receber = async () => {
-    const query = await db.collection("users").get();
-    query.forEach((doc) => {
-      console.log(`${doc.id} => ${doc.data().client.tipo}`);
-    });
-  };
-
-
-
 function login() {
   showLoading();
 
@@ -109,23 +91,20 @@ function login() {
     .signInWithEmailAndPassword(
       document.getElementById("email").value,
       document.getElementById("password").value
-
-
-
       
     )
     .then((response) => {
       hideLoading();
-      receber();
-   
+
       //window.location.href = "cadastrar.html";
-    
     })
     .catch((error) => {
       hideLoading();
       console.log("error", error);
       alert(getErrorMessage(error));
     });
+
+
 }
 
 function getErrorMessage(error) {
@@ -154,17 +133,16 @@ function recoverPassword() {
 
 /*Fazer logout quando estiver logado depois de fazer login */
 
-function logout(){
-  firebase.auth().signOut().then(()=>{
-    window.location.href = 'login.html';}).catch(() =>{
-      alert('Erro ao fazer logout');
-    
-  })
+function logout() {
+  firebase
+    .auth()
+    .signOut()
+    .then(() => {
+      window.location.href = "login.html";
+    })
+    .catch(() => {
+      alert("Erro ao fazer logout");
+    });
 }
 
-
 /*Fazer logout quando estiver logado depois de fazer login */
-
-
-
-

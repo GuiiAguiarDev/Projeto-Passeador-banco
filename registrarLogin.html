@@ -71,7 +71,7 @@
 
             <div class="linha-3">
               <div class="subGridLinha3">
-                <button
+                <button class="teste"
                   type="button"
                   id="register-button"
                   onclick="cadastrar()"
@@ -106,36 +106,8 @@
       firebase.initializeApp(firebaseConfig);
 
       const db = firebase.firestore();
-
-      /*Nao conseguir ir para tela de cadastrar login se já estiver logado */
      
 
-      //Eu estou usando aqui, mas posso usar no arquivo js se eu quiser, sempre quando quiser
-      //recuperar dados cadastrados no fire base uso esse codigo abaixo, lembrando que estou
-      //chamando ele acima tambem para funcionar
-      const receber = async () => {
-        const query = await db.collection("users").get();
-        query.forEach((doc) => {
-          const tipo = `${doc.data().client.tipo}`
-
-          firebase.auth().onAuthStateChanged(function (user,tipo) {
-        receber();
-        if (tipo ==='cliente') {
-          
-          console.log('oi');
-         
-        }
-      });
-
-
-        });
-
-
-
-
-      };
-
-      /*Nao conseguir ir para tela de cadastrar login  se já estiver logado */
     </script>
   </body>
 </html>

@@ -13,13 +13,18 @@ async function cadastrar() {
     const newUser = await this.firebase
       .auth()
       .createUserWithEmailAndPassword(client.usuario, client.senha);
-
     db.collection("users").doc(newUser.user.uid).set({
       client: client,
     });
-
     console.log(newUser);
+
+    //Fiz esse setTimeout, para dar tempo para cadastrar no firebaseStore, pois se nao coloco
+    //vai muito rapido e só cadastra no autetication do banco
+    /* setTimeout(() => {
+      window.location.href = "cadastrar.html";
+    }, 1000);*/
   } catch (error) {
     console.log(error);
   }
 }
+
