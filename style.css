@@ -560,9 +560,10 @@ header button {
 /*Tabela informações*/
 
 #tableClient {
-  max-width: 100%;
+  width: 75%;
   height: 150px;
-
+  margin: 0 auto;;
+  margin-top: 50px;
   border: solid rgb(41, 39, 39) 2px;
 }
 

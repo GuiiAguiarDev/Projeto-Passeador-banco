@@ -128,6 +128,8 @@
       firebase.auth().onAuthStateChanged(function (user) {
         
         if (user) {
+          //recuperar dados que quero apartir do user do autetication passando pelo firestore
+          //então está completo
           db.collection('users').doc(user.uid).get().then(doc =>{
             const uid = user.uid;
             const teste = user.email;
