@@ -91,6 +91,45 @@ addEventListener("load", (event) => {
 });
 const ativarCadastroHoraData = () => {};
 
+
+
+
+
+/*Fazer logout quando estiver logado depois de fazer login */
+
+function logout() {
+  firebase
+    .auth()
+    .signOut()
+    .then(() => {
+      window.location.href = "login.html";
+    })
+    .catch(() => {
+      alert("Erro ao fazer logout");
+    });
+}
+
+/*Fazer logout quando estiver logado depois de fazer login */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
 Jeito de fazer função com for para pegar em todos os radios os selects e etc
 
