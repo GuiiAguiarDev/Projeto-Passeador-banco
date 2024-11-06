@@ -28,31 +28,22 @@ const saveClient = () => {
       uid: firebase.auth().currentUser.email,
     },
   };
-  
 
   db.collection("cachorro").add({
     client: client,
   });
   db.collection("cachorro")
-      .get()
-      .then((snapshot) => {
-        const tableClient = snapshot.docs.map(doc => ({
-          ...doc.data().client,uid: doc.id //Aqui estou pegando o id gerado automatico pelo fire e as infos daqui
-     
-        }) );
+    .get()
+    .then((snapshot) => {
+      const tableClient = snapshot.docs.map((doc) => ({
+        ...doc.data().client,
+        uid: doc.id, //Aqui estou pegando o id gerado automatico pelo fire e as infos daqui
+      }));
 
-
-        tabelinha(tableClient);
-
-
-
-
-});
-updatetable();
+      tabelinha(tableClient);
+    });
+  updatetable();
 };
-
-
-
 
 //-------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------
@@ -90,16 +81,10 @@ const tabelinha = (tableClient) => {
   });
 };
 
-
-
 //Trazer as informações de forma automatica do banco assim que entrar na página ou dar f5
 
 //-------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------
-
-
-
-
 
 //------------------------------------------------------
 //------------------------------------------------------
@@ -121,7 +106,6 @@ const updatetable = () => {
   const dbClient = readClient();
   //Depois que atualizar limpar tabela
   clearTable();
-
 };
 
 document.getElementById("salvar").addEventListener("click", saveClient);
@@ -131,30 +115,31 @@ document.getElementById("salvar").addEventListener("click", saveClient);
 //------------------------------------------------------
 //---
 
-
-
-
-
-
-
-
-
-
-
 addEventListener("load", (event) => {
-  
   db.collection("cachorro")
     .get()
     .then((snapshot) => {
-      const tableClient = snapshot.docs.map(doc => ({
-        ...doc.data().client,uid: doc.id //Aqui estou pegando o id gerado automatico pelo fire e as infos daqui
-   
-      }) );
-      
-      tabelinha(tableClient);
+      const tableClient = snapshot.docs.map((doc) => ({
+        ...doc.data().client,
+        uid: doc.id, //Aqui estou pegando o id gerado automatico pelo fire e as infos daqui
+      }));
 
-    
-   
+      tabelinha(tableClient);
     });
-    
 });
+
+/*Fazer logout quando estiver logado depois de fazer login */
+
+function logout() {
+  firebase
+    .auth()
+    .signOut()
+    .then(() => {
+      window.location.href = "login.html";
+    })
+    .catch(() => {
+      alert("Erro ao fazer logout");
+    });
+}
+
+/*Fazer logout quando estiver logado depois de fazer login */

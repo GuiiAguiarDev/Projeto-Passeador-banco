@@ -1,6 +1,42 @@
+//-------------------------------------------------
+//-------------------------------------------------
+//-------------------------------------------------
+/*Conexão e if de usuario */
+const firebaseConfig = {
+  apiKey: "AIzaSyA_XT84Ebukm9-Y5cjtuEJEztdg5qW_-Cg",
+  authDomain: "agoravai-218c6.firebaseapp.com",
+  projectId: "agoravai-218c6",
+  storageBucket: "agoravai-218c6.appspot.com",
+  messagingSenderId: "975390263643",
+  appId: "1:975390263643:web:48584a10445fd54007727e",
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.firestore();
+
+/*Só usuario logados que podem ter acesso a determinadas paginas, como nao estou logado
+  não tenho acesso e sou direcionado para a pagina de login */
+firebase.auth().onAuthStateChanged((user) => {
+  if (!user) {
+    window.location.href = "login.html";
+  }
+  firebaseUser = user;
+  const usuarioFirebase = user.email;
+  usuarioLogado = document.querySelector(".nomeUsuarioLogado");
+  usuarioLogado.innerHTML = usuarioFirebase;
+});
+/*Só usuario logados que podem ter acesso a determinadas paginas */
+
+/*Conexão e if de usuario */
+//-------------------------------------------------
+//-------------------------------------------------
+//-------------------------------------------------
+
 /*Cadastrando informações no banco */
 
-"use strict";
+("use strict");
 const readClient = () => getLocalStorage();
 
 const getLocalStorage = () =>
@@ -36,15 +72,25 @@ const tabelinha = (tableClient) => {
     tr.appendChild(user);
 
     const selecionado = document.createElement("td");
-    selecionado.innerHTML = ` 
-         
-                <input
+    selecionado.innerHTML = `
+    <input
                 class="teste"
                   type="radio"
                   id="passeador"
                   name="escolha"
-                  value="${tableClient.uid +tableClient.raca + ' ' +tableClient.cor + ' ' +tableClient.idade + ' '+  tableClient.nome + tableClient.user.uid}"
-                /> Selecionado
+                  value="${
+                    tableClient.uid +
+                    tableClient.raca +
+                    " " +
+                    tableClient.cor +
+                    " " +
+                    tableClient.idade +
+                    " " +
+                    tableClient.nome +
+                    tableClient.user.uid
+                  }"
+                />
+Selecionado
 
 
              
@@ -91,10 +137,6 @@ addEventListener("load", (event) => {
 });
 const ativarCadastroHoraData = () => {};
 
-
-
-
-
 /*Fazer logout quando estiver logado depois de fazer login */
 
 function logout() {
@@ -110,25 +152,6 @@ function logout() {
 }
 
 /*Fazer logout quando estiver logado depois de fazer login */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*
 Jeito de fazer função com for para pegar em todos os radios os selects e etc
@@ -151,4 +174,4 @@ Jeito de fazer função com for para pegar em todos os radios os selects e etc
 
 
 
-*/
+*/ 
