@@ -4,10 +4,16 @@ form,
 input,
 label,
 footer,
-div {
+div,
+th,
+tr,
+td {
   margin: 0px;
   padding: 0px;
 }
+
+ 
+
 
 img {
   max-width: 100%;
@@ -562,15 +568,47 @@ header button {
 #tableClient {
   width: 75%;
   height: 150px;
-  margin: 0 auto;;
+  margin: 0 auto;
   margin-top: 50px;
   border: solid rgb(41, 39, 39) 2px;
 }
 
 #tableClient th,
 td {
-  padding: 0.978em;
+  padding: 10px;
+  height: 25px;
   border: solid rgb(41, 39, 39) 2px;
 }
 
+#tableServ {
+  display: none;
+ border: solid black 3px;
+ margin: 0 auto;
+ margin-top: 50px;
+}
+
+
+
+#tableServ td {
+ border: none;
+}
+
+#tableServ input {
+  width: 85px;
+ }
+ 
+
+
+ .buttonCadastrarServico{
+  border-radius: 50px;
+  background: rgb(35, 99, 35, 0.7);
+
+  padding: 10px;
+
+ }
+
+
+
 /*/*Tabela informações*/
+
+

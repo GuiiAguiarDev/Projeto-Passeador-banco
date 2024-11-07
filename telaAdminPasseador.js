@@ -90,7 +90,7 @@ const tabelinha = (tableClient) => {
                     tableClient.user.uid
                   }"
                 />
-Selecionado
+Selecionar
 
 
              
@@ -103,6 +103,8 @@ Selecionado
     document.querySelector("#tableClient>tbody").appendChild(tr);
   });
 };
+
+const tableServ = document.getElementById("tableServ");
 
 function pegandoInformacoesRadioSelecionandoPet() {
   db.collection("cachorro")
@@ -121,7 +123,7 @@ function pegandoInformacoesRadioSelecionandoPet() {
         ".pegandoInformacoesRadio"
       );
 
-    informacoesRadio.forEach(function (data) {
+      informacoesRadio.forEach(function (data) {
         data.addEventListener("click", function () {
           //tras  ainformações do meu value do radio quando eu seleciono oq eu quero ou seja ele
           //tras as informações do que eu selecionei, vou deixar ocmentado
@@ -132,6 +134,10 @@ function pegandoInformacoesRadioSelecionandoPet() {
 
           console.log(data);
 
+          //Quando eu clicar no radio tbm aparecer minha tabela, pois deixei no style como none
+
+          tableServ.style.display = "table";
+          //Quando eu clicar no radio tbm aparecer minha tabela, pois deixei no style como none
           const array = data.value.split(" ");
           console.log(array);
 
@@ -143,30 +149,61 @@ function pegandoInformacoesRadioSelecionandoPet() {
             const tab = document.getElementById("tableServ");
 
             //Como abaixo quero retornar apenas um item e nao todos, e sim só o que eu selecionei
-            //eu vou tirar o forEach vou deixar ele comentado abaixo para eu lebrar como era 
+            //eu vou tirar o forEach vou deixar ele comentado abaixo para eu lebrar como era
             //quiser mostrar todos só descomentar ele, nao exquecer de descomentar o }) la no fim
             //tableServ.forEach((tableServ) => {
-              const tr = document.createElement("tr");
-              tr.classList.add(tableServ.type);
+            const tr = document.createElement("tr");
+            tr.classList.add(tableServ.type);
 
-              const nome = document.createElement("td");
-              nome.innerHTML = array[2];
-              tr.appendChild(nome);
+            const nome = document.createElement("td");
+            nome.innerHTML = array[2];
+            // estou setando classes para eu conseguir recuperar a informação e salvar no banco
+            //para eu conseguir afzer isso lá na minha função saveServico
+            nome.setAttribute("id", "servicoNome");
+            tr.appendChild(nome);
 
-              const user = document.createElement("td");
-              user.innerHTML = array[4];
-              tr.appendChild(user);
+            const user = document.createElement("td");
+            user.innerHTML = array[4];
+            user.setAttribute("id", "servicoUser");
+            tr.appendChild(user);
 
-              const raca = document.createElement("td");
-              raca.innerHTML = array[3];
-              tr.appendChild(raca);
+            const raca = document.createElement("td");
+            raca.innerHTML = array[3];
+            raca.setAttribute("id", "servicoRaca");
+            tr.appendChild(raca);
 
-              tab.appendChild(tr);
-              document.querySelector("#tableServ>tbody").appendChild(tr);
-              clearTable();
-          //});
+            //Inserindo input na tabela
+            const data = document.createElement("td");
+            const dataInput = document.createElement("input");
+            tr.appendChild(data);
+            dataInput.setAttribute("id", "servicoData");
+            data.appendChild(dataInput).placeholder = "DD/mm/YYYY";
+
+            //Inserindo input na tabela
+            const hora = document.createElement("td");
+            const horaInput = document.createElement("input");
+            tr.appendChild(hora);
+            horaInput.setAttribute("id", "servicoHora");
+            hora.appendChild(horaInput).placeholder = "HH:MM";
+
+            //Inserindo input na tabela
+            const button = document.createElement("button");
+            button.innerHTML = "Cadastrar";
+            //Inserindo classe no meu button criado pelo createElement
+            //essa mesma classe do button vou pegar para conseguir executar minha função
+            button.setAttribute("class", "buttonCadastrarServico");
+            tr.appendChild(button);
+
+            tab.appendChild(tr);
+            document.querySelector("#tableServ>tbody").appendChild(tr);
+
+            button.addEventListener("click", saveServico);
+
+            //});
           };
-
+          //Chamando o clearTable para limpar os dados e mostrar apenas uma linha da tabela,
+          // quando eu  apertar no radio e não trazer todos
+          clearTable();
           tabelaServico(tableClient);
         });
       });
@@ -174,8 +211,6 @@ function pegandoInformacoesRadioSelecionandoPet() {
 }
 
 pegandoInformacoesRadioSelecionandoPet();
-
-
 
 /*Fazer logout quando estiver logado depois de fazer login */
 
@@ -220,22 +255,37 @@ Jeito de fazer função com for para pegar em todos os radios os selects e etc
             trazer o dado que quer
            console.log(tableClient[1].nome);
 
-
-
 */
 
-
-
+//função para trazer apena um  informação na minha table,
+// quando eu apertar no radio vai trazer apenas aquela linha que selecionei
+//e nao todas.
 const clearTable = () => {
   const rows = document.querySelectorAll("#tableServ>tbody td");
   const del = document.querySelectorAll("#tableServ>tbody tr");
 
-  if(rows.length >= 7){
-    rows.forEach((row) => row.parentNode.removeChild(row));
-    del.forEach((row) => row.parentNode.removeChild(row)); //
-    console.log(rows);
-    console.log(del);
-  }
-
+  rows.forEach((row) => row.parentNode.removeChild(row));
+  del.forEach((row) => row.parentNode.removeChild(row));
+  console.log(rows);
+  console.log(del);
 };
 
+const saveServico = () => {
+  console.log("funcionou");
+  const client = {
+    //como não vou isnerir dados e sim pegar o que já está eu uso o innerHTML
+    nome: document.getElementById("servicoNome").innerHTML,
+    user: document.getElementById("servicoUser").innerHTML,
+    raca: document.getElementById("servicoRaca").innerHTML,
+
+    data: document.getElementById("servicoData").value,
+    hora: document.getElementById("servicoHora").value,
+    //Mesmo nao tendo o campo estou vinculando o meu salvamento no banco com o usuario que estou logado
+  };
+
+  db.collection("servico").add({
+    client: client,
+  });
+
+  tableServ.style.display = "none";
+};
