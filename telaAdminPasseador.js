@@ -287,5 +287,33 @@ const saveServico = () => {
     client: client,
   });
 
+
   tableServ.style.display = "none";
+
+
+
+  //Vou criar uma mensagem, para quando a pessoa apertar no clicar em salvar
+  // mostrar uma mensagem que deu certo
+
+  //aqui eu coloco o que quero criar pode ser oq eu quiser div, p , li e etc
+  const p = document.createElement("p");
+  //Aqui eu crio a mensagem que quero criar
+  const mensagemDeCadastroServico = document.createTextNode(
+    "Serviço cadastro com sucesso"
+  );
+
+
+  //Aqui eu faço a atribuação dos dois acima
+  p.appendChild(mensagemDeCadastroServico);
+
+  //já aqui, eu escolho onde vai ficar o texto, vejo onde tem um elemento na página
+  //e depois escolho  lembrando que é before eae faço a inserção igual a baixo
+  const afterTabela = document.querySelector("footer");
+  //inserindo uma classe nele para gente conseguir editar
+  p.setAttribute('class', 'mensagemDeCadastroServico');
+  document.body.insertBefore(p, afterTabela);
+
+
+
+  
 };

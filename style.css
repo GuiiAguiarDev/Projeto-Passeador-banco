@@ -612,3 +612,15 @@ td {
 /*/*Tabela informações*/
 
 
+/*Mensagem de cadadtro realiado com sucesso do cadastro de servico*/
+
+.mensagemDeCadastroServico{
+  font-size: 1.8em;
+  color: green;
+  font-style: italic;
+  font-weight: bolder;
+  text-shadow: 1px 1px 2px pink;
+ text-align: center;
+
+}
+
